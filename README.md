@@ -19,7 +19,7 @@ npm run db:seed
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Open [Try website here]([http://localhost:3000](https://marathon-tracker.duckdns.org/))
 
 ## Marshal Checkpoint URLs
 
