@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Participant {
+  id        String   @id @default(cuid())
+  bibNumber String   @unique
+  name      String?
+  scans     Scan[]
+  createdAt DateTime @default(now())
+}
+
+model Checkpoint {
+  id    String @id @default(cuid())
+  slug  String @unique
+  name  String
+  order Int
+  scans Scan[]
+}
+
+model Scan {
+  id            String      @id @default(cuid())
+  participantId String
+  checkpointId  String
+  scannedAt     DateTime    @default(now())
+  participant   Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  checkpoint    Checkpoint  @relation(fields: [checkpointId], references: [id], onDelete: Cascade)
+
+  @@unique([participantId, checkpointId])
+  @@index([scannedAt])
+}

@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #ffffff;
+  --color-fg: #000000;
+  --color-neo: #39ff14;
+  --color-neo-dark: #2ecc0f;
+  --color-muted: #f5f5f5;
+  --color-muted-fg: #525252;
+  --color-danger: #ff0000;
+  --color-warning: #ffd600;
+  --color-border: #000000;
+  --color-border-light: #e5e5e5;
+
+  --font-display: "Barlow Condensed", sans-serif;
+  --font-body: "Barlow", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --shadow-brutal: 4px 4px 0 0 #000000;
+  --shadow-brutal-sm: 2px 2px 0 0 #000000;
+  --shadow-brutal-lg: 6px 6px 0 0 #000000;
+  --radius: 0px;
+}
+
+@utility press-brutal {
+  transition: transform 150ms ease-out, box-shadow 150ms ease-out;
+
+  &:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+@utility font-body {
+  font-family: var(--font-body);
+}
+
+@utility font-mono {
+  font-family: var(--font-mono);
+}
+
+@utility shadow-brutal {
+  box-shadow: var(--shadow-brutal);
+}
+
+@utility shadow-brutal-sm {
+  box-shadow: var(--shadow-brutal-sm);
+}
+
+@utility shadow-brutal-lg {
+  box-shadow: var(--shadow-brutal-lg);
+}
+
+@utility border-brutal {
+  border: 3px solid var(--color-border);
+}
+
+@utility grid-texture {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: calc(100% / 8) 100%, 100% 48px;
+}
+
+* {
+  border-radius: 0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-neo);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes pulse-neo {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes scan-flash {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-pulse-neo {
+  animation: pulse-neo 1.5s ease-in-out infinite;
+}
+
+.animate-scan-flash {
+  animation: scan-flash 150ms ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slide-down 200ms ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-neo,
+  .animate-scan-flash,
+  .animate-slide-down {
+    animation: none;
+  }
+}

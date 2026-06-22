@@ -1,0 +1,14 @@
+@media print {
+  nav,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+
+  #qr-sheet {
+    break-inside: avoid;
+  }
+}
